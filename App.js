@@ -1,29 +1,49 @@
 import React, { useState } from "react";
-import { Text, View, Button, StyleSheet } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function App() {
   const [contagem, setContagem] = useState(0);
 
-  const precos = [10, 15, 20, 25, 30, 35];
-
-  let contador = 0;
-
-  // contador = contador + 1;
+  const decrementar = () => {
+    setContagem((valorAtual) => Math.max(0, valorAtual - 1));
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.texto}>"Ola, Turma de INF204!"</Text>
-
-      <Text style={styles.titulo}>"Preços:"</Text>
-      {precos.filter((preco) => preco > 20)
-        .map((preco) => <Text style={styles.titulo}>{preco}</Text>)}
-
-      {/* <Text style={styles.titulo}>"CONTADOR:"</Text>
+      <Text style={styles.titulo}>Contagem Atual:</Text>
       <Text style={styles.numero}>{contagem}</Text>
-      <Button
-        title="Incrementar +1"
-        onPress={() => setContagem(contagem + 1)}
-      /> */}
+
+      <View style={styles.botoes}>
+        <TouchableOpacity
+          accessibilityRole="button"
+          accessibilityLabel="Decrementar a contagem em um"
+          activeOpacity={0.75}
+          onPress={decrementar}
+          style={[styles.botao, styles.botaoDecrementar]}
+        >
+          <Text style={styles.textoBotao}>Decrementar -1</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          accessibilityRole="button"
+          accessibilityLabel="Incrementar a contagem em um"
+          activeOpacity={0.75}
+          onPress={() => setContagem((valorAtual) => valorAtual + 1)}
+          style={[styles.botao, styles.botaoIncrementar]}
+        >
+          <Text style={styles.textoBotao}>Incrementar +1</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          accessibilityRole="button"
+          accessibilityLabel="Zerar a contagem"
+          activeOpacity={0.75}
+          onPress={() => setContagem(0)}
+          style={[styles.botao, styles.botaoZerar]}
+        >
+          <Text style={styles.textoBotao}>Zerar</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -33,21 +53,42 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#e0f7fa"
-  },
-  texto: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#00695c"
+    padding: 24,
+    backgroundColor: "#f4f7f5"
   },
   titulo: {
-    fontSize: 20,
-    color: "#333333"
+    fontSize: 22,
+    color: "#263238"
   },
   numero: {
-    fontSize: 48,
+    marginVertical: 24,
+    fontSize: 64,
     fontWeight: "bold",
-    color: "#4caf50",
-    marginBottom: 20
+    color: "#2e7d32"
+  },
+  botoes: {
+    width: "100%",
+    maxWidth: 320,
+    gap: 12
+  },
+  botao: {
+    alignItems: "center",
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 10
+  },
+  botaoDecrementar: {
+    backgroundColor: "#c62828"
+  },
+  botaoIncrementar: {
+    backgroundColor: "#2e7d32"
+  },
+  botaoZerar: {
+    backgroundColor: "#455a64"
+  },
+  textoBotao: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: "#ffffff"
   }
 });
