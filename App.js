@@ -1,94 +1,106 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import JogoDaVelha from './JogoDaVelha';
 
-export default function App() {
-  const [contagem, setContagem] = useState(0);
-
-  const decrementar = () => {
-    setContagem((valorAtual) => Math.max(0, valorAtual - 1));
-  };
+function CartaoPerfil({ nomeInicial, profissao, foto }) {
+  const [nome, setNome] = useState(nomeInicial);
+  const [seguindo, setSeguindo] = useState(false);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.titulo}>Contagem Atual:</Text>
-      <Text style={styles.numero}>{contagem}</Text>
-
-      <View style={styles.botoes}>
-        <TouchableOpacity
-          accessibilityRole="button"
-          accessibilityLabel="Decrementar a contagem em um"
-          activeOpacity={0.75}
-          onPress={decrementar}
-          style={[styles.botao, styles.botaoDecrementar]}
-        >
-          <Text style={styles.textoBotao}>Decrementar -1</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          accessibilityRole="button"
-          accessibilityLabel="Incrementar a contagem em um"
-          activeOpacity={0.75}
-          onPress={() => setContagem((valorAtual) => valorAtual + 1)}
-          style={[styles.botao, styles.botaoIncrementar]}
-        >
-          <Text style={styles.textoBotao}>Incrementar +1</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          accessibilityRole="button"
-          accessibilityLabel="Zerar a contagem"
-          activeOpacity={0.75}
-          onPress={() => setContagem(0)}
-          style={[styles.botao, styles.botaoZerar]}
-        >
-          <Text style={styles.textoBotao}>Zerar</Text>
-        </TouchableOpacity>
-      </View>
+    <View style={styles.cartao}>
+      <Image source={{ uri: foto }} style={styles.avatar} />
+      <Text style={styles.nomeUsuario}>{nome}</Text>
+      <Text style={styles.profissao}>{profissao}</Text>
+      <TouchableOpacity
+        style={[styles.botao, seguindo && styles.botaoDesativado]}
+        activeOpacity={0.7}
+        disabled={seguindo}
+        onPress={() => {
+          setSeguindo(true);
+          alert('Seguindo ' + nome);
+        }}
+      >
+        <Text style={styles.textoBotao}>{seguindo ? 'Já Seguindo' : 'Seguir'}</Text>
+      </TouchableOpacity>
+      <TextInput
+        style={styles.input}
+        placeholder="Alterar nome..."
+        value={nome}
+        onChangeText={setNome}
+      />
     </View>
+  );
+}
+
+export default function App() {
+  return (
+    <ScrollView style={styles.container} contentContainerStyle={styles.conteudo}>
+      <CartaoPerfil nomeInicial="João Vitor" profissao="Engenheiro de Software" foto="https://i.pravatar.cc/240?img=12" />
+      <CartaoPerfil nomeInicial="Ana Souza" profissao="Designer" foto="https://i.pravatar.cc/240?img=47" />
+      <CartaoPerfil nomeInicial="Pedro Lima" profissao="Desenvolvedor" foto="https://i.pravatar.cc/240?img=13" />
+      <JogoDaVelha />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 24,
-    backgroundColor: "#f4f7f5"
+    backgroundColor: '#F5F5F5',
   },
-  titulo: {
+  conteudo: {
+    alignItems: 'center',
+    paddingVertical: 40,
+  },
+  cartao: {
+    backgroundColor: '#FFFFFF',
+    padding: 30,
+    borderRadius: 15,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 5,
+    width: '80%',
+    marginBottom: 20,
+  },
+  avatar: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    marginBottom: 15,
+  },
+  nomeUsuario: {
     fontSize: 22,
-    color: "#263238"
+    fontWeight: 'bold',
+    color: '#14325A',
   },
-  numero: {
-    marginVertical: 24,
-    fontSize: 64,
-    fontWeight: "bold",
-    color: "#2e7d32"
-  },
-  botoes: {
-    width: "100%",
-    maxWidth: 320,
-    gap: 12
+  profissao: {
+    fontSize: 16,
+    color: '#505050',
+    marginBottom: 20,
   },
   botao: {
-    alignItems: "center",
-    paddingVertical: 14,
-    paddingHorizontal: 20,
-    borderRadius: 10
+    backgroundColor: '#0064A0',
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 8,
+    marginBottom: 20,
   },
-  botaoDecrementar: {
-    backgroundColor: "#c62828"
-  },
-  botaoIncrementar: {
-    backgroundColor: "#2e7d32"
-  },
-  botaoZerar: {
-    backgroundColor: "#455a64"
+  botaoDesativado: {
+    backgroundColor: '#808080',
   },
   textoBotao: {
-    fontSize: 17,
-    fontWeight: "bold",
-    color: "#ffffff"
-  }
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  input: {
+    width: '100%',
+    borderWidth: 1,
+    borderColor: '#CCC',
+    borderRadius: 8,
+    padding: 10,
+    textAlign: 'center',
+  },
 });

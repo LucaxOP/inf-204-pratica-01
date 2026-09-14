@@ -1,24 +1,29 @@
-# INF204 - Pratica Laboratorial 01
+# INF204 - Prática Laboratorial 03
 
-Aplicativo desenvolvido com React Native e Expo para a Pratica Laboratorial 01.
+Aplicativo básico em React Native e Expo conforme o roteiro da prática 03.
 
 ## Integrantes
 
-- Nome: Lucas Oliveira Paiva | Matricula: 27940
-- Nome: Gabryel Messias Oliveira de Assis | Matricula: 27316
+- Lucas Oliveira Paiva | Matrícula: 27940
+- Gabryel Messias Oliveira de Assis | Matrícula: 27316
 
 ## Funcionalidades
 
-- Incrementar a contagem em uma unidade.
-- Decrementar a contagem sem permitir valores negativos.
-- Zerar a contagem.
-- Botoes personalizados com `TouchableOpacity`.
+- Três cartões de perfil com imagem, nome e profissão.
+- Alteração do nome com TextInput e useState.
+- Botão Seguir que muda para Já Seguindo e fica cinza usando array de estilos.
+- ScrollView para rolagem dos perfis e do tabuleiro.
+- Jogo da velha 3x3 com Flexbox e alternância entre X e O.
 
-## Como executar
+## Executar
 
-```bash
+```sh
 npm install
 npx expo start
 ```
 
-No terminal do Expo, use o QR Code para abrir no Expo Go ou pressione `w` para executar no navegador.
+Abra pelo QR Code no Expo Go, na mesma rede Wi-Fi, ou pressione `w` para abrir no navegador.
+
+## Branch da entrega
+
+`feature/pratica-03`, criada a partir da `main`.
