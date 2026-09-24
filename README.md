@@ -1,18 +1,20 @@
-# INF204 - Pratica Laboratorial 01
+# INF204 - Prática Laboratorial 05
 
-Aplicativo desenvolvido com React Native e Expo para a Pratica Laboratorial 01.
+Aplicativo desenvolvido com React Native e Expo para a Prática Laboratorial 05.
 
 ## Integrantes
 
-- Nome: Lucas Oliveira Paiva | Matricula: 27940
-- Nome: Gabryel Messias Oliveira de Assis | Matricula: 27316
+- Lucas Oliveira Paiva - Matrícula: 27940
+- Gabryel Messias Oliveira de Assis - Matrícula: 27316
 
 ## Funcionalidades
 
-- Incrementar a contagem em uma unidade.
-- Decrementar a contagem sem permitir valores negativos.
-- Zerar a contagem.
-- Botoes personalizados com `TouchableOpacity`.
+- Agenda inicial com 15 contatos.
+- Lista virtualizada com `FlatList`, chaves únicas e separadores visuais.
+- Mensagem específica para o estado vazio.
+- Botão para limpar todos os contatos.
+- Pull-to-refresh com recarga após dois segundos.
+- Rolagem infinita que acrescenta três contatos por carga.
 
 ## Como executar
 
@@ -22,3 +24,9 @@ npx expo start
 ```
 
 No terminal do Expo, use o QR Code para abrir no Expo Go ou pressione `w` para executar no navegador.
+
+## Testes
+
+```bash
+npm test
+```
